@@ -1,4 +1,5 @@
 import { ThemeProvider, ThemeToggle } from '../modules/theme'
+import { CounterProvider, CounterWithContext, CounterWithHook } from '../modules/counter'
 import styles from './app.module.css'
 
 function MainPage() {
@@ -9,22 +10,12 @@ function MainPage() {
             </h1>
 
             <ThemeToggle />
-
-            <div className={styles.explanation}>
-                <h3 className={styles.explanationTitle}>Примеры:</h3>
-                <ul className={styles.list}>
-                    <li>
-                        <strong>Context API</strong> - используется для темы
-                        приложения. Все компоненты внутри ThemeProvider имеют
-                        доступ к текущей теме и функции переключения.
-                    </li>
-                    <li>
-                        <strong>Кастомный хук</strong> - useLocalStorage
-                        используется для сохранения темы в localStorage, чтобы
-                        она сохранялась после перезагрузки страницы.
-                    </li>
-                </ul>
-            </div>
+            <h2>Счетчик с Context</h2>
+            <CounterWithContext />
+            <CounterWithContext />
+            <h2>Счетчик с Hook</h2>
+            <CounterWithHook />
+            <CounterWithHook />
         </div>
     )
 }
@@ -32,7 +23,9 @@ function MainPage() {
 function App() {
     return (
         <ThemeProvider>
-            <MainPage />
+            <CounterProvider>
+                <MainPage />
+            </CounterProvider>   
         </ThemeProvider>
     )
 }
